@@ -1,5 +1,21 @@
-angular.module('restaurants',['ngRoute','ngResource']);
+(function(){
+  var app = angular.module('store',[]);
+  app.controller('StoreController', function(){
+      this.products = gems;
+  });
 
-function alertar(){
-  alert("ok");
-}
+  var gems = [ {
+    name : "Dodecadron",
+    price: 2.95,
+    description: "A beaultiful gem.",
+    canPurchase: true,
+    soldOut: false
+  },
+  {
+    name : "Pentagonal Gem",
+    price: 5.95,
+    description: "Yet, another beaultiful gem.",
+    canPurchase: false,
+    soldOut: true
+  }];
+})();
