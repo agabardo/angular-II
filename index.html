@@ -2,6 +2,7 @@
 <html ng-app="gemStore">
   <head>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
     <script type="text/javascript" src="js/1.4.5/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
   </head>
@@ -15,7 +16,7 @@
         <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
         <div ng-controller="GalleryController as gallery"  ng-show="product.images.length">
           <div class="img-wrap">
-            <img ng-src="{{product.images[gallery.current]}}" />
+            <img class="img-circle" ng-src="{{product.images[gallery.current]}}" />
           </div>
           <ul class="img-thumbnails clearfix">
             <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
@@ -57,7 +58,7 @@
             </ul>
 
             <!--  Review Form -->
-            <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+            <form novalidate name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)">
 
               <!--  Live Preview -->
               <blockquote>
@@ -69,16 +70,19 @@
               <!--  Review Form -->
               <h4>Submit a Review</h4>
               <fieldset class="form-group">
-                <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+                <select required ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
                   <option value="">Rate the Product</option>
                 </select>
               </fieldset>
               <fieldset class="form-group">
-                <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+                <textarea required ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
               </fieldset>
               <fieldset class="form-group">
-                <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
+                <input required ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
               </fieldset>
+
+              <div>review form is {{reviewForm.$valid}}</div>
+
               <fieldset class="form-group">
                 <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
               </fieldset>
