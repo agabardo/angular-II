@@ -11,4 +11,4 @@ Angular Resources
 [Meetup - Find a Local Angular Meetup.](http://www.meetup.com)<br/>
 [Dash - Instant offline access to +130 API Docs!](https://kapeli.com/dash)
 
-<img src="Screenshot 2016-04-25 18.26.04.png" alt=""/>
+<img with="50%" src="Screenshot 2016-04-25 18.26.04.png" alt=""/>
