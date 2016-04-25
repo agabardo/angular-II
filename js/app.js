@@ -1,9 +1,15 @@
 (function() {
-  var app = angular.module('gemStore', []);
+  var app = angular.module('gemStore', ['store-products']);
 
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
+  app.controller('StoreController',['$http', function($http){
+    var store = this;
+    store.products = [];
+
+    $http.get('./store_products.json').success(function(data){
+      store.products = data;
+    });
+
+  }]);
 
   app.controller('TabController', function(){
     this.tab = 1;
@@ -34,27 +40,7 @@
     };
   });
 
-  app.directive('productTitle', function(){
-    return{
-      restrict: 'E',
-      templateUrl: 'product_title.html'
-    };
-  });
 
-  app.directive('productPanels', function(){
-    return{
-      restrict: 'E',
-      templateUrl: 'product-panels.html',
-      controller:function(){
-        this.review = {};
-        this.addReview = function(product) {
-        this.review.createdOn = Date.now();
-        product.reviews.push(this.review);
-        this.review = {};
-        }
-      }
-    };
-  });
 
   var gems = [{
       name: 'Azurite',
